@@ -11,7 +11,6 @@ export const fetchWeather = (city) => {
 
     return {
         type: FETCH_WEATHER,
-        city,
         payload: request
     }
 }
