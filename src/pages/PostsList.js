@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions';
 import _ from 'lodash';
+import { Link } from 'react-router-dom';
 
 class PostsList extends React.Component {
   componentDidMount() {
@@ -15,6 +16,11 @@ class PostsList extends React.Component {
   render() {
     return (
       <div>
+        <div className="text-xs-right">
+          <Link className="btn btn-primary" to="/posts/create">
+            Add a post
+          </Link>
+        </div>
         <h3>Posts</h3>
         {_.isEmpty(this.props.posts) ? <div>Loading...</div> : this.renderPosts()}
       </div>
