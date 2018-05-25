@@ -8,6 +8,7 @@ import reducers from './reducers';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PostsList from "./pages/PostsList";
 import CreatePost from "./pages/CreatePost";
+import PostDetail from './pages/PostDetail';
 
 const store = createStore(reducers, {}, applyMiddleware(promise));
 
@@ -17,6 +18,7 @@ ReactDOM.render(
       <div>
         <Switch>
           <Route path="/posts/create" component={CreatePost} />
+          <Route path="/posts/:postId" component={PostDetail} />
           <Route path="/" component={PostsList} />
         </Switch>
       </div>
