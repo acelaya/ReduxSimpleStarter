@@ -1,8 +1,16 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
+import { createPost } from '../actions';
+import { connect } from 'react-redux';
 
 class CreatePost extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { saving: false };
+  }
+
   render() {
     const { handleSubmit } = this.props;
 
@@ -15,7 +23,9 @@ class CreatePost extends React.Component {
           <Field name="content" component={CreatePost.renderField} label="Content" />
           <div style={{ textAlign: 'right' }}>
             <Link to="/" className="btn btn-link">Cancel</Link>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary" disabled={this.state.saving}>
+              {this.state.saving ? 'Saving...' : 'Submit'}
+            </button>
           </div>
         </form>
       </div>
@@ -36,7 +46,10 @@ class CreatePost extends React.Component {
   }
 
   onSubmit(values) {
-    console.log(values);
+    this.setState({ saving: true });
+    this.props.createPost(values, () => {
+      this.props.history.push('/');
+    });
   }
 }
 
@@ -56,4 +69,4 @@ const validate = (values) => {
 export default reduxForm({
   validate,
   form: 'CreatePostForm'
-})(CreatePost)
+})(connect(null, { createPost })(CreatePost))
