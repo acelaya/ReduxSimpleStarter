@@ -32,7 +32,7 @@ class PostsList extends React.Component {
       <ul className="list-group">
         {_.map(this.props.posts, post => (
           <li className="list-group-item" key={post.id}>
-            {post.title}
+            <Link to={`posts/${post.id}`}>{post.title}</Link>
           </li>
         ))}
       </ul>
