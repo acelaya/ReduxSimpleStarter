@@ -1,5 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 
 class CreatePost extends React.Component {
   render() {
@@ -12,7 +13,8 @@ class CreatePost extends React.Component {
           <Field name="title" component={CreatePost.renderField} label="Title" />
           <Field name="tags" component={CreatePost.renderField} label="Tags" />
           <Field name="content" component={CreatePost.renderField} label="Content" />
-          <div className="text-right">
+          <div style={{ textAlign: 'right' }}>
+            <Link to="/" className="btn btn-link">Cancel</Link>
             <button type="submit" className="btn btn-primary">Submit</button>
           </div>
         </form>
@@ -21,11 +23,14 @@ class CreatePost extends React.Component {
   }
 
   static renderField(field) {
+    const { touched, error } = field.meta;
+    const className = `form-group ${touched && error ? 'has-danger' : ''}`;
+
     return (
-      <div className="form-group">
+      <div className={className}>
         <label>{field.label}:</label>
         <input className="form-control" type="text" {...field.input} />
-        {field.meta.touched && field.meta.error && <span>{field.meta.error}</span>}
+        <div className="text-help">{touched && error && <span>{field.meta.error}</span>}</div>
       </div>
     );
   }
