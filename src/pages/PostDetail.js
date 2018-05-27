@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchPost, deletePost } from '../actions';
+import PostActions from '../actions/post';
 import { Link } from 'react-router-dom';
 
 class PostDetail extends React.Component {
@@ -47,4 +47,7 @@ const mapStateToProps = ({ posts }, ownProps) => {
   return { post: posts[ownProps.match.params.postId] };
 };
 
-export default connect(mapStateToProps, { fetchPost, deletePost })(PostDetail);
+export default connect(mapStateToProps, {
+  fetchPost: PostActions.fetchPost,
+  deletePost: PostActions.deletePost
+})(PostDetail);

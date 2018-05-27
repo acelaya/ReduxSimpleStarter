@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions';
+import PostActions from '../actions/post';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
 
@@ -42,4 +42,4 @@ class PostsList extends React.Component {
 
 const mapStateToProps = ({ posts }) => ({ posts });
 
-export default connect(mapStateToProps, { fetchPosts })(PostsList);
+export default connect(mapStateToProps, { fetchPosts: PostActions.fetchPosts })(PostsList);

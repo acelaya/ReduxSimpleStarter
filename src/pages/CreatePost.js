@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
-import { createPost } from '../actions';
+import PostActions from '../actions/post';
 import { connect } from 'react-redux';
 
 class CreatePost extends React.Component {
@@ -69,4 +69,4 @@ const validate = (values) => {
 export default reduxForm({
   validate,
   form: 'CreatePostForm'
-})(connect(null, { createPost })(CreatePost))
+})(connect(null, { createPost: PostActions.createPost })(CreatePost))

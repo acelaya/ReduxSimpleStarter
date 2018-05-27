@@ -1,4 +1,4 @@
-import { FETCH_POSTS, DELETE_POST, FETCH_POST } from '../actions';
+import { FETCH_POSTS, DELETE_POST, FETCH_POST } from '../actions/post';
 import _ from 'lodash';
 
 export default (state = {}, action) => {
